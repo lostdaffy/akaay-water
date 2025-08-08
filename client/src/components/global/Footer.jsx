@@ -22,7 +22,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block group">
               <img
-                src="/images/logo-akaay.png"
+                src="/images/akaay-logo.jpeg"
                 alt="Akaay Water Logo"
                 className="w-48"
               />
@@ -165,11 +165,9 @@ const Footer = () => {
                   <div>
                     <p className="font-medium text-white mb-1">Our Location</p>
                     <address className="not-italic leading-relaxed">
-                      C-9, Turner Road, Clement Town,
-                      <br />
-                      Turner Road, Dehradun,
-                      <br />
-                      Uttarakhand, India - 248002
+                      Himalayan Beverages, Khasra No 130, Bhagwanpur Road,{" "}
+                      <br /> Village Khanpur, Bhagwanpur, <br /> Haridwar,
+                      Uttarakhand - 247661
                     </address>
                   </div>
                 </div>
@@ -192,8 +190,8 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="font-medium text-white mb-2">Email Us</p>
-                    <a
-                      href="mailto:contact@akaaywater.com"
+                    <Link
+                      to="mailto:info@akaaywater.com"
                       className="block text-gray-300 transition-colors duration-200"
                       onMouseEnter={(e) => {
                         e.target.style.color = "#301757";
@@ -202,8 +200,8 @@ const Footer = () => {
                         e.target.style.color = "#d1d5db";
                       }}
                     >
-                      contact@akaaywater.com
-                    </a>
+                      info@akaaywater.com
+                    </Link>
                   </div>
                 </div>
               </div>

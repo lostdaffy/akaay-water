@@ -6,21 +6,22 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Product", path: "/product" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "Overview", path: "/" },
+    { name: "The Range", path: "/the-range" },
+    { name: "Private Label", path: "/private-label" },
+    { name: "Our Story", path: "/about" },
+    { name: "Contact us", path: "/contact" },
   ];
 
   return (
-    <nav className="fixed shadow-lg w-full z-50 bg-white/95 backdrop-blur-sm">
+    <nav className="fixed shadow-lg w-full z-50  backdrop-blur-sm py-2">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16 relative">
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">
             <img
-              src="/images/logo-akaay.png"
-              className="h-8 w-auto sm:h-10 md:h-8"
+              src="/images/akaay-logo.jpeg"
+              className="h-10 w-auto sm:h-10 md:h-10"
               alt="Akaay Logo"
             />
           </div>
@@ -81,7 +82,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-90 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-4 py-4 space-y-1 bg-white/95 backdrop-blur-sm border-t border-gray-100">

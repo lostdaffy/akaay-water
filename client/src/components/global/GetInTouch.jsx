@@ -1,268 +1,334 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const GetInTouch = () => {
-  const [formStatus, setFormStatus] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Animation variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-    const formData = new FormData(e.target);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
+  const fadeInUp = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const slideInLeft = {
+    hidden: {
+      opacity: 0,
+      x: -50,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const slideInRight = {
+    hidden: {
+      opacity: 0,
+      x: 50,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
+  };
 
-    setFormStatus("Sending...");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Handle form submission logic here
+  };
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "", // <-- Add your access key here
-          subject: "New Contact Form Submission from Akaay Water",
-          from_name: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          message: data.message,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setFormStatus("Message sent! We will contact you soon.");
-        e.target.reset();
-      } else {
-        setFormStatus("Failed to send message. Please try again.");
-      }
-    } catch (error) {
-      setFormStatus("Something went wrong. Please try again later.");
+  const contactInfo = [
+    {
+      icon: "ri-phone-line",
+      title: "Call Us",
+      info: "+91 73027 99941",
+      subInfo: "Mon-Sat 9AM-6PM"
+    },
+    {
+      icon: "ri-mail-line",
+      title: "Email Us",
+      info: "info@akaaywater.com",
+      subInfo: "24/7 Support Available"
+    },
+    {
+      icon: "ri-map-pin-line",
+      title: "Visit Us",
+      info: "Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur,",
+      subInfo: "Haridwar, Uttarakhand - 247661"
     }
-  };
-
-  // Custom input focus handler
-  const handleInputFocus = (e) => {
-    e.target.style.borderColor = "#301757";
-    e.target.style.boxShadow = "0 0 0 2px rgba(48, 23, 87, 0.2)";
-  };
-
-  const handleInputBlur = (e) => {
-    e.target.style.borderColor = "#d1d5db";
-    e.target.style.boxShadow = "none";
-  };
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-white py-16 md:py-20 lg:py-24 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <motion.div
+        className="absolute top-20 right-10 w-32 h-32 bg-[#3c096c] rounded-full opacity-5 blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.05, 0.1, 0.05],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 left-10 w-24 h-24 bg-cyan-400 rounded-full opacity-5 blur-2xl"
+        animate={{
+          scale: [1.2, 1, 1.2],
+          opacity: [0.1, 0.05, 0.1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
-        <header className="text-center mb-16">
-          <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 leading-tight">
-            GET IN{" "}
-            <span className="text-[#301757] relative">
-              TOUCH
-              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#301757] to-purple-400 rounded-full opacity-20"></div>
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to experience premium hydration? Our team is here to support
-            you — reach out today.
-          </p>
-        </header>
+        <motion.div
+          className="text-center mx-auto pb-12 md:pb-16 lg:pb-20 max-w-4xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          <motion.h4
+            className="uppercase text-[#3c096c] text-sm sm:text-base lg:text-xl font-semibold mb-3 md:mb-4"
+            variants={fadeInUp}
+          >
+            Contact Us
+          </motion.h4>
+          <motion.h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize mb-4 md:mb-6 text-gray-900"
+            variants={fadeInUp}
+          >
+            Get In Touch With Us
+          </motion.h1>
+          <motion.p
+            className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto"
+            variants={fadeInUp}
+          >
+            Have questions about our premium mineral water products? We're here to help with orders, deliveries, and any inquiries.
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className="order-2 lg:order-1">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[#301757] rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-                  <i className="ri-message-3-line" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#301757]">
-                  Send us a Message
-                </h3>
-              </div>
-
-              <div className="space-y-6">
-                {/* Name and Phone Row */}
+          <motion.div
+            className="order-2 lg:order-1"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInLeft}
+          >
+            <div className="bg-gray-50 rounded-2xl p-6 md:p-8 lg:p-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Send us a Message
+              </h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="fullName"
-                      className="block text-gray-800 mb-3 text-sm font-semibold uppercase tracking-wide"
-                    >
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Full Name *
                     </label>
                     <input
                       type="text"
-                      id="fullName"
-                      name="fullName"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       required
-                      placeholder="Your Name"
-                      className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-4 text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:bg-white hover:border-gray-300"
-                      onFocus={handleInputFocus}
-                      onBlur={handleInputBlur}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3c096c] focus:border-transparent transition-all duration-300"
+                      placeholder="Your full name"
                     />
-                  </div>
+                  </motion.div>
 
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-gray-800 mb-3 text-sm font-semibold uppercase tracking-wide"
-                    >
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Phone Number *
                     </label>
                     <input
                       type="tel"
-                      id="phone"
                       name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       required
-                      placeholder="+91 0123456789"
-                      className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-4 text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:bg-white hover:border-gray-300"
-                      onFocus={handleInputFocus}
-                      onBlur={handleInputBlur}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3c096c] focus:border-transparent transition-all duration-300"
+                      placeholder="+91 98765 43210"
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-gray-800 mb-3 text-sm font-semibold uppercase tracking-wide"
-                  >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Email Address *
                   </label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     required
-                    placeholder="you@email.com"
-                    className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-4 text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:bg-white hover:border-gray-300"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3c096c] focus:border-transparent transition-all duration-300"
+                    placeholder="your.email@example.com"
                   />
-                </div>
+                </motion.div>
 
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-gray-800 mb-3 text-sm font-semibold uppercase tracking-wide"
-                  >
+                
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Message *
                   </label>
                   <textarea
-                    id="message"
                     name="message"
-                    rows="6"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     required
-                    placeholder="Tell us about your requirements, bulk orders, partnership opportunities..."
-                    className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-4 text-gray-900 placeholder-gray-400 resize-none transition-all duration-200 focus:outline-none focus:bg-white hover:border-gray-300"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3c096c] focus:border-transparent transition-all duration-300 resize-none"
+                    placeholder="Tell us how we can help you..."
                   />
-                </div>
+                </motion.div>
 
-                {/* Submit Button */}
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-[#301757] text-white font-bold py-4 px-6 rounded-xl  hover:scale-[1.02] hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 text-lg"
+                  className="w-full bg-[#3c096c] text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-3"
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 10px 25px rgba(60, 9, 108, 0.3)",
+                    backgroundColor: "#240046"
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <i className="ri-send-plane-2-line text-xl" />
-                  Send Message
-                </button>
+                  <span>Send Message</span>
+                  <motion.span
+                    className="text-xl"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    →
+                  </motion.span>
+                </motion.button>
+              </form>
+            </div>
+          </motion.div>
 
-                {/* Form Status Message */}
-                {formStatus && (
-                  <div className="mt-6">
-                    <p
-                      className={`text-center font-semibold py-3 px-4 rounded-lg ${
-                        formStatus.includes("sent")
-                          ? "text-green-700 bg-green-50 border border-green-200"
-                          : formStatus.includes("Failed") ||
-                            formStatus.includes("wrong")
-                          ? "text-red-700 bg-red-50 border border-red-200"
-                          : "text-[#301757] bg-purple-50 border border-purple-200"
-                      }`}
-                    >
-                      {formStatus}
+          {/* Contact Information */}
+          <motion.div
+            className="order-1 lg:order-2 space-y-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInRight}
+          >
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Reach Out to Us
+              </h3>
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+                We're committed to providing exceptional service and the finest mineral water. 
+                Contact us for orders, inquiries, or just to say hello!
+              </p>
+            </div>
+
+            {/* Contact Cards */}
+            <motion.div 
+              className="space-y-6"
+              variants={containerVariants}
+            >
+              {contactInfo.map((contact, index) => (
+                <motion.div
+                  key={index}
+                  className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  variants={fadeInUp}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -3,
+                    boxShadow: "0 15px 35px rgba(60, 9, 108, 0.1)"
+                  }}
+                >
+                  <motion.div
+                    className="flex-shrink-0 w-12 h-12 bg-[#3c096c] rounded-full flex items-center justify-center"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 5,
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <i className={`${contact.icon} text-white text-lg`}></i>
+                  </motion.div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-gray-900 mb-1">
+                      {contact.title}
+                    </h4>
+                    <p className="text-[#3c096c] font-semibold mb-1">
+                      {contact.info}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {contact.subInfo}
                     </p>
                   </div>
-                )}
-              </div>
-            </form>
-          </div>
+                </motion.div>
+              ))}
+            </motion.div>
 
-          {/* Contact Info Aside */}
-          <aside className="order-1 lg:order-2">
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-gray-200 h-full">
-              {/* Company Info */}
-              <div className="flex flex-col items-center text-center mb-10">
-                <div className="w-32 h-32">
-                  <img
-                    src="/images/logo-akaay.png"
-                    alt="Akaay Water Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  Experience pure, revitalizing hydration with{" "}
-                  <span className="font-semibold text-[#301757]">
-                    Akaay Water
-                  </span>
-                  . Our commitment to quality ensures excellence in every drop,
-                  delivering a refreshing taste that complements your active
-                  lifestyle.
-                </p>
-              </div>
-
-              {/* Contact Details */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-5 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-                  <div className="w-14 h-14 bg-[#301757] rounded-full flex items-center justify-center text-white text-xl shadow-lg flex-shrink-0">
-                    <i className="ri-phone-fill" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-900 font-bold text-sm uppercase tracking-wide mb-1">
-                      Phone
-                    </h4>
-                    <a
-                      href="tel:+917302799941"
-                      className="text-[#301757] font-semibold text-lg transition-colors duration-200"
-                    >
-                      +91 73027 99941
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-5 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-200">
-                  <div className="w-14 h-14 bg-[#301757] rounded-full flex items-center justify-center text-white text-xl shadow-lg flex-shrink-0">
-                    <i className="ri-mail-line" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-900 font-bold text-sm uppercase tracking-wide mb-1">
-                      Email
-                    </h4>
-                    <a
-                      href="mailto:contact@akaaywater.com"
-                      className="text-[#301757] font-semibold text-lg transition-colors duration-200 break-all"
-                    >
-                      contact@akaaywater.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
+         
+          </motion.div>
         </div>
       </div>
     </div>
