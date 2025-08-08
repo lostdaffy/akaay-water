@@ -292,7 +292,7 @@ const About = () => {
                   }}
                 >
                   <i
-                    className={`${value.icon} text-[#301757] text-xl sm:text-2xl`}
+                    className={`${value.icon} text-white text-xl sm:text-2xl`}
                   ></i>
                 </motion.div>
                 <motion.h3

@@ -10,70 +10,28 @@ const GetInTouch = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   // Animation variants
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
+  const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
   const fadeInUp = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-
   const slideInLeft = {
-    hidden: {
-      opacity: 0,
-      x: -50,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-
   const slideInRight = {
-    hidden: {
-      opacity: 0,
-      x: 50,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // FINAL handleSubmit: Only status code is checked!
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -82,15 +40,13 @@ const GetInTouch = () => {
     try {
       const formElement = e.target;
       const formDataToSend = new FormData(formElement);
-      
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formDataToSend
+        body: formDataToSend,
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok || response.status === 200) {
         setSubmitStatus('success');
         setFormData({
           name: "",
@@ -99,11 +55,9 @@ const GetInTouch = () => {
           message: "",
         });
       } else {
-        console.log("Error", data);
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.log("Error", error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -111,24 +65,9 @@ const GetInTouch = () => {
   };
 
   const contactInfo = [
-    {
-      icon: "ri-phone-line",
-      title: "Call Us",
-      info: "+91 73027 99941",
-      subInfo: "Mon-Sat 9AM-6PM"
-    },
-    {
-      icon: "ri-mail-line",
-      title: "Email Us",
-      info: "info@akaaywater.com",
-      subInfo: "24/7 Support Available"
-    },
-    {
-      icon: "ri-map-pin-line",
-      title: "Visit Us",
-      info: "Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur,",
-      subInfo: "Haridwar, Uttarakhand - 247661"
-    }
+    { icon: "ri-phone-line", title: "Call Us", info: "+91 73027 99941", subInfo: "Mon-Sat 9AM-6PM" },
+    { icon: "ri-mail-line", title: "Email Us", info: "info@akaaywater.com", subInfo: "24/7 Support Available" },
+    { icon: "ri-map-pin-line", title: "Visit Us", info: "Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur,", subInfo: "Haridwar, Uttarakhand - 247661" }
   ];
 
   return (
@@ -136,79 +75,37 @@ const GetInTouch = () => {
       {/* Background decorative elements */}
       <motion.div
         className="absolute top-20 right-10 w-32 h-32 bg-[#3c096c] rounded-full opacity-5 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.05, 0.1, 0.05],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-20 left-10 w-24 h-24 bg-cyan-400 rounded-full opacity-5 blur-2xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.1, 0.05, 0.1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.05, 0.1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="text-center mx-auto pb-12 md:pb-16 lg:pb-20 max-w-4xl"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerVariants}
-        >
-          <motion.h4
-            className="uppercase text-[#3c096c] text-sm sm:text-base lg:text-xl font-semibold mb-3 md:mb-4"
-            variants={fadeInUp}
-          >
-            Contact Us
-          </motion.h4>
-          <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize mb-4 md:mb-6 text-gray-900"
-            variants={fadeInUp}
-          >
+        <motion.div className="text-center mx-auto pb-12 md:pb-16 lg:pb-20 max-w-4xl"
+          initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={containerVariants}>
+          <motion.h4 className="uppercase text-[#3c096c] text-sm sm:text-base lg:text-xl font-semibold mb-3 md:mb-4" variants={fadeInUp}>Contact Us</motion.h4>
+          <motion.h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize mb-4 md:mb-6 text-gray-900" variants={fadeInUp}>
             Get In Touch With Us
           </motion.h1>
-          <motion.p
-            className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto"
-            variants={fadeInUp}
-          >
+          <motion.p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto" variants={fadeInUp}>
             Have questions about our premium mineral water products? We're here to help with orders, deliveries, and any inquiries.
           </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <motion.div
-            className="order-2 lg:order-1"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInLeft}
-          >
+          <motion.div className="order-2 lg:order-1" initial="hidden" whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }} variants={slideInLeft}>
             <div className="bg-gray-50 rounded-2xl p-6 md:p-8 lg:p-10">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Send us a Message
-              </h3>
-              
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+
               {/* Success Message */}
               {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
-                >
+                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <div className="flex items-center">
                     <i className="ri-check-circle-line text-green-500 text-xl mr-3"></i>
                     <div>
@@ -218,14 +115,10 @@ const GetInTouch = () => {
                   </div>
                 </motion.div>
               )}
-
               {/* Error Message */}
               {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
-                >
+                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                   <div className="flex items-center">
                     <i className="ri-error-warning-line text-red-500 text-xl mr-3"></i>
                     <div>
@@ -235,25 +128,15 @@ const GetInTouch = () => {
                   </div>
                 </motion.div>
               )}
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Web3Forms Access Key - Replace YOUR_ACCESS_KEY with your actual key */}
-                <input type="hidden" name="access_key" value="260cad70-c5b5-4493-bad4-59b3452c6603" />
-                
-                {/* Optional: Add subject line */}
-                <input type="hidden" name="subject" value="New Contact Form Submission from Akaay Water Website" />
-                
-                {/* Optional: Redirect URL after successful submission */}
-                <input type="hidden" name="redirect" value="https://web3forms.com/success" />
 
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="hidden" name="access_key" value="260cad70-c5b5-4493-bad4-59b3452c6603" />
+                <input type="hidden" name="subject" value="New Contact Form Submission from Akaay Water Website" />
+                {/* <input type="hidden" name="redirect" value="https://web3forms.com/success" /> */}
+                {/* DO NOT put redirect input above! */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Full Name *
-                    </label>
+                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
                     <input
                       type="text"
                       name="name"
@@ -265,14 +148,8 @@ const GetInTouch = () => {
                       placeholder="Your full name"
                     />
                   </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Phone Number *
-                    </label>
+                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
                     <input
                       type="tel"
                       name="phone"
@@ -285,14 +162,8 @@ const GetInTouch = () => {
                     />
                   </motion.div>
                 </div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address *
-                  </label>
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
                   <input
                     type="email"
                     name="email"
@@ -304,14 +175,8 @@ const GetInTouch = () => {
                     placeholder="your.email@example.com"
                   />
                 </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Message *
-                  </label>
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -323,7 +188,6 @@ const GetInTouch = () => {
                     placeholder="Tell us how we can help you..."
                   />
                 </motion.div>
-
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
@@ -360,30 +224,17 @@ const GetInTouch = () => {
               </form>
             </div>
           </motion.div>
-
           {/* Contact Information */}
-          <motion.div
-            className="order-1 lg:order-2 space-y-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInRight}
-          >
+          <motion.div className="order-1 lg:order-2 space-y-8" initial="hidden" whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }} variants={slideInRight}>
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-                Reach Out to Us
-              </h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Reach Out to Us</h3>
               <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
                 We're committed to providing exceptional service and the finest mineral water. 
                 Contact us for orders, inquiries, or just to say hello!
               </p>
             </div>
-
-            {/* Contact Cards */}
-            <motion.div 
-              className="space-y-6"
-              variants={containerVariants}
-            >
+            <motion.div className="space-y-6" variants={containerVariants}>
               {contactInfo.map((contact, index) => (
                 <motion.div
                   key={index}
@@ -397,24 +248,15 @@ const GetInTouch = () => {
                 >
                   <motion.div
                     className="flex-shrink-0 w-12 h-12 bg-[#3c096c] rounded-full flex items-center justify-center"
-                    whileHover={{
-                      scale: 1.1,
-                      rotate: 5,
-                    }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.2 }}
                   >
                     <i className={`${contact.icon} text-white text-lg`}></i>
                   </motion.div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-900 mb-1">
-                      {contact.title}
-                    </h4>
-                    <p className="text-[#3c096c] font-semibold mb-1">
-                      {contact.info}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      {contact.subInfo}
-                    </p>
+                    <h4 className="text-lg font-bold text-gray-900 mb-1">{contact.title}</h4>
+                    <p className="text-[#3c096c] font-semibold mb-1">{contact.info}</p>
+                    <p className="text-sm text-gray-600">{contact.subInfo}</p>
                   </div>
                 </motion.div>
               ))}
