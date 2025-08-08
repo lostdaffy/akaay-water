@@ -3,7 +3,7 @@ import Hero from "../components/home/Hero";
 import AboutUs from "../components/home/AboutUs";
 import GetInTouch from "../components/global/GetInTouch";
 import NaturalWaterSection from "../components/home/NaturalWaterSection";
-import Banner from "../components/home/Banner";
+import Service from "../components/home/Service";
 import ProductHighlight from "../components/home/ProductHighlight";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <Hero />
       <AboutUs />
-      <Banner />
+      <Service />
       <NaturalWaterSection />
       <ProductHighlight />
       <GetInTouch />

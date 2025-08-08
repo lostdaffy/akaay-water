@@ -71,7 +71,7 @@ const Hero = () => {
         className="w-full min-h-screen relative overflow-hidden flex items-center pt-20"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.0) 40%), url(/images/banner3.jpg)",
+            "linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.0) 40%), url(/images/banner3.webp)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",

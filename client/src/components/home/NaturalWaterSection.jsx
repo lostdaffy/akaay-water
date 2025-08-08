@@ -119,7 +119,7 @@ const NaturalWaterSection = () => {
             className="relative flex justify-center items-center order-2 lg:order-1"
             variants={fadeInRight}
           >
-            <img src="/images/11.jpg" alt="" />
+            <img src="/images/natural-water.webp" alt="" />
           </motion.div>
 
           {/* Left Content */}

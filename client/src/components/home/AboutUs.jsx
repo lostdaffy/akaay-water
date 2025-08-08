@@ -120,7 +120,7 @@ const AboutUs = () => {
           >
             <div className="relative">
               <img
-                src="/images/654554.jpg"
+                src="/images/about.webp"
                 alt="Our water production facility"
                 className="w-full h-64 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] object-cover transform hover:scale-105 transition-transform duration-700"
               />

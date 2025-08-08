@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer
-      className="bg-[#0f0026] text-white relative overflow-hidden border-t-2"
+      className="bg-gray-600 text-white relative overflow-hidden border-t-2"
       style={{ borderColor: "#301757" }}
     >
       {/* Background decoration */}
@@ -22,7 +22,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block group">
               <img
-                src="/images/akaay-logo.jpeg"
+                src="/images/akaay-logo.webp"
                 alt="Akaay Water Logo"
                 className="w-48"
               />
@@ -42,8 +42,8 @@ const Footer = () => {
             <div className="mt-6">
               <p className="text-sm text-gray-400 mb-3">Follow Us</p>
               <div className="flex gap-3">
-                <a
-                  href="https://www.instagram.com/akaaywater/"
+                <Link
+                  to="https://www.instagram.com/akaaywater/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-10 h-10 bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110"
@@ -56,9 +56,9 @@ const Footer = () => {
                   }}
                 >
                   <i className="ri-instagram-line text-white"></i>
-                </a>
-                <a
-                  href="https://www.facebook.com/akaaywater"
+                </Link>
+                <Link
+                  to="https://www.facebook.com/akaaywater"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-10 h-10 bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110"
@@ -71,10 +71,10 @@ const Footer = () => {
                   }}
                 >
                   <i className="ri-facebook-fill text-white"></i>
-                </a>
+                </Link>
 
-                <a
-                  href="https://wa.me/917302799941"
+                <Link
+                  to="https://wa.me/917302799941"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-10 h-10 bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110"
@@ -87,7 +87,7 @@ const Footer = () => {
                   }}
                 >
                   <i className="ri-whatsapp-line text-white"></i>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -223,8 +223,8 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="font-medium text-white mb-2">Call Us</p>
-                    <a
-                      href="tel:+917302799941"
+                    <Link
+                      to="tel:+917302799941"
                       className="block text-gray-300 transition-colors duration-200"
                       onMouseEnter={(e) => {
                         e.target.style.color = "#301757";
@@ -234,7 +234,7 @@ const Footer = () => {
                       }}
                     >
                       +91 73027 99941
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

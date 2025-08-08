@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import GetInTouch from "../components/global/GetInTouch";
+import MainHeading from "../components/global/MainHeading";
 
 const About = () => {
   // Animation variants
@@ -103,70 +104,7 @@ const About = () => {
 
   return (
     <>
-      {/* Hero Section - Enhanced Responsiveness */}
-      <div
-        className="w-full h-[300px] xs:h-[350px] sm:h-[400px] md:h-[450px] lg:h-[400px] relative overflow-hidden flex items-center pt-16 sm:pt-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(/images/56688.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* Background decorative elements */}
-        <motion.div
-          className="absolute top-10 right-10 w-20 h-20 bg-[#301757] rounded-full opacity-10 blur-2xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-10 left-10 w-16 h-16 bg-purple-400 rounded-full opacity-10 blur-xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.1, 0.2],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            <motion.div
-              className="text-center lg:text-left space-y-4 sm:space-y-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={slideInLeft}
-            >
-              <motion.h1
-                className="text-gray-900 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold uppercase leading-tight tracking-wide"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                About <br />
-                <motion.span
-                  className="text-[#301757] block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                  Akaay Water
-                </motion.span>
-              </motion.h1>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      <MainHeading title="About" subtitle="Akaay Water" />
 
       {/* Mission & Vision Section - Enhanced Responsiveness */}
       <div className="w-full bg-white py-12 sm:py-16 lg:py-20">
@@ -181,7 +119,7 @@ const About = () => {
             {/* Left Side - Image */}
             <motion.div className="order-2 lg:order-1" variants={slideInLeft}>
               <motion.img
-                src="/images/345345.jpg"
+                src="/images/mission.webp"
                 className="w-full h-[250px] xs:h-[300px] sm:h-[350px] md:h-[400px] lg:h-auto rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl object-cover"
                 alt="Akaay Water Mission"
                 whileHover={{

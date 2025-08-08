@@ -1,30 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GetInTouch from "../components/global/GetInTouch";
+import MainHeading from "../components/global/MainHeading";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-  };
-
   const contactInfo = [
     {
       icon: "ri-phone-line",
@@ -41,7 +20,9 @@ const Contact = () => {
     {
       icon: "ri-map-pin-line",
       title: "Visit Us",
-      details: ["Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur, Haridwar, Uttarakhand - 247661"],
+      details: [
+        "Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur, Haridwar, Uttarakhand - 247661",
+      ],
       description: "",
     },
     {
@@ -52,33 +33,11 @@ const Contact = () => {
     },
   ];
 
-
-
-
   return (
     <>
-      {/* Hero Section - Enhanced Responsiveness */}
-      <div
-        className="w-full h-[300px] xs:h-[350px] sm:h-[400px] md:h-[450px] lg:h-[400px] relative overflow-hidden flex items-center pt-16 sm:pt-20"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url(/images/56688.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            <div className="text-center lg:text-left space-y-4 sm:space-y-6">
-              <h1 className="text-gray-900 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold uppercase leading-tight tracking-wide">
-                Contact <br />
-                <span className="text-[#301757] block">Akaay Water</span>
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
+      <MainHeading title="Contact" subtitle="Akaay Water" />
 
+      
       {/* Contact Information Cards - Enhanced Responsiveness */}
       <div className="w-full bg-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8">
@@ -146,7 +105,6 @@ const Contact = () => {
         </div>
       </div>
 
-     
       {/* Get in Touch */}
       <GetInTouch />
     </>

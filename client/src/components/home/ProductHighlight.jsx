@@ -51,7 +51,7 @@ const ProductHighlight = () => {
       subtitle: "250ml Bottle",
       description:
         "Perfect single serving size for personal hydration. Pure mineral water with natural pH balance.",
-      image: "/images/15.jpg",
+      image: "/images/250ml.webp",
       size: "500ml",
       features: ["Natural pH 7.4", "Rich in Minerals", "BPA Free"],
     },
@@ -61,7 +61,7 @@ const ProductHighlight = () => {
       subtitle: "500ml Bottle",
       description:
         "Ideal family size for shared consumption. Advanced purification with essential minerals for wellness.",
-      image: "/images/16.jpg",
+      image: "/images/500ml.webp",
       size: "1L",
       features: ["Natural pH 7.4", "Family Size", "Premium Quality"],
     },
@@ -71,7 +71,7 @@ const ProductHighlight = () => {
       subtitle: "1 Liter Bottle",
       description:
         "Large capacity for active lifestyle and daily hydration needs. Perfect for office and home use.",
-      image: "/images/17.jpg",
+      image: "/images/1000ml.webp",
       size: "1.5L",
       features: ["Natural pH 7.4", "Large Capacity", "Eco-Friendly"],
     },
