@@ -130,7 +130,7 @@ const GetInTouch = () => {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="access_key" value="260cad70-c5b5-4493-bad4-59b3452c6603" />
+                <input type="hidden" name="access_key" value="9f4805cc-31e8-4d43-9d4c-aae7002229a1" />
                 <input type="hidden" name="subject" value="New Contact Form Submission from Akaay Water Website" />
                 {/* <input type="hidden" name="redirect" value="https://web3forms.com/success" /> */}
                 {/* DO NOT put redirect input above! */}
