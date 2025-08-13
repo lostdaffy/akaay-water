@@ -48,12 +48,12 @@ const ProductHighlight = () => {
     {
       id: 1,
       name: "Premium Natural",
-      subtitle: "250ml Bottle",
+      subtitle: "200ml Bottle",
       description:
         "Perfect single serving size for personal hydration. Pure mineral water with natural pH balance.",
       image: "/images/250ml.webp",
       size: "500ml",
-      features: ["Natural pH 7.4", "Rich in Minerals", "BPA Free"],
+      features: ["200ml pack of 24", "Natural pH 7.8", "Rich in Minerals", "BPA Free"],
     },
     {
       id: 2,
@@ -63,7 +63,7 @@ const ProductHighlight = () => {
         "Ideal family size for shared consumption. Advanced purification with essential minerals for wellness.",
       image: "/images/500ml.webp",
       size: "1L",
-      features: ["Natural pH 7.4", "Family Size", "Premium Quality"],
+      features: ["500ml pack of 20", "Natural pH 7.8", "Family Size", "Premium Quality"],
     },
     {
       id: 3,
@@ -73,7 +73,7 @@ const ProductHighlight = () => {
         "Large capacity for active lifestyle and daily hydration needs. Perfect for office and home use.",
       image: "/images/1000ml.webp",
       size: "1.5L",
-      features: ["Natural pH 7.4", "Large Capacity", "Eco-Friendly"],
+      features: ["1lr pack of 12","Natural pH 7.8", "Large Capacity", "Eco-Friendly"],
     },
   ];
 

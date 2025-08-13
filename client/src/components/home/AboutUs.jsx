@@ -87,7 +87,7 @@ const AboutUs = () => {
               className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700 leading-relaxed"
               variants={fadeInUp}
             >
-              For over 15 years, we have been committed to delivering the
+              We have been committed to delivering the
               purest, most refreshing mineral water straight from pristine
               mountain sources. Our journey began with a simple mission: to
               provide families with access to clean, healthy, and naturally

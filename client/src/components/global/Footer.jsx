@@ -22,7 +22,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block group">
               <img
-                src="/images/akaay-logo.webp"
+                src="/images/akaay-logo.png"
                 alt="Akaay Water Logo"
                 className="w-48"
               />

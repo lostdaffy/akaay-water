@@ -20,7 +20,7 @@ const Navbar = () => {
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">
             <img
-              src="/images/akaay-logo.webp"
+              src="/images/akaay-logo.png"
               className="h-10 w-auto sm:h-10 md:h-10"
               alt="Akaay Logo"
             />
