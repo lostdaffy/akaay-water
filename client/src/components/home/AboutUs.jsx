@@ -41,13 +41,6 @@ const AboutUs = () => {
     },
   };
 
-  const stats = [
-    { number: "15+", label: "Years Experience" },
-    { number: "50M+", label: "Bottles Delivered" },
-    { number: "1000+", label: "Happy Customers" },
-    { number: "99.9%", label: "Purity Standard" },
-  ];
-
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-16 bg-white relative overflow-hidden min-h-screen">
       {/* Background decorative elements - Responsive positioning */}
@@ -87,11 +80,10 @@ const AboutUs = () => {
               className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700 leading-relaxed"
               variants={fadeInUp}
             >
-              We have been committed to delivering the
-              purest, most refreshing mineral water straight from pristine
-              mountain sources. Our journey began with a simple mission: to
-              provide families with access to clean, healthy, and naturally
-              enriched water.
+              We have been committed to delivering the purest, most refreshing
+              mineral water straight from pristine mountain sources. Our journey
+              began with a simple mission: to provide families with access to
+              clean, healthy, and naturally enriched water.
             </motion.p>
 
             <motion.div

@@ -5,6 +5,8 @@ import GetInTouch from "../components/global/GetInTouch";
 import NaturalWaterSection from "../components/home/NaturalWaterSection";
 import Service from "../components/home/Service";
 import ProductHighlight from "../components/home/ProductHighlight";
+import ProcessSection from "../components/home/ProcessSection";
+import Brands from "../components/about/brands";
 
 const Home = () => {
   return (
@@ -12,8 +14,10 @@ const Home = () => {
       <Hero />
       <AboutUs />
       <Service />
-      <NaturalWaterSection />
+      <ProcessSection />
       <ProductHighlight />
+      <NaturalWaterSection />
+      <Brands />
       <GetInTouch />
     </>
   );
