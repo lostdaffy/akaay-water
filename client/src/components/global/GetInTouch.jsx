@@ -65,7 +65,7 @@ const GetInTouch = () => {
   };
 
   const contactInfo = [
-    { icon: "ri-phone-line", title: "Call Us", info: "+91 73027 99941", subInfo: "Mon-Sat 9AM-6PM" },
+    { icon: "ri-phone-line", title: "Call Us", info: "+91 7819846375, +91 7055130555", subInfo: "Mon-Sat 9AM-6PM" },
     { icon: "ri-mail-line", title: "Email Us", info: "info@akaaywater.com", subInfo: "24/7 Support Available" },
     { icon: "ri-map-pin-line", title: "Visit Us", info: "Himalayan Beverages, Khasra No 130, Bhagwanpur Road, Village Khanpur, Bhagwanpur,", subInfo: "Haridwar, Uttarakhand - 247661" }
   ];

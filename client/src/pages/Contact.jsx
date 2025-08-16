@@ -8,7 +8,7 @@ const Contact = () => {
     {
       icon: "ri-phone-line",
       title: "Call Us",
-      details: ["+91 73027 99941"],
+      details: ["+91 7055130555", "+91 7819846375"],
       description: "Available 24/7 for customer support",
     },
     {

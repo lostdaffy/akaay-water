@@ -43,7 +43,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             {/* Contact button - hidden on small screens */}
             <Link
-              to="tel:+917302799941"
+              to="tel:+917819846375"
               className="hidden lg:inline-flex items-center gap-2 bg-[#301757] text-white text-sm font-medium px-5 py-2.5 rounded-full border-2 border-[#301757] hover:bg-white hover:text-[#301757] transition-all duration-300 transform hover:scale-105"
             >
               <i className="ri-phone-fill text-sm"></i>

@@ -74,7 +74,7 @@ const Footer = () => {
                 </Link>
 
                 <Link
-                  to="https://wa.me/917302799941"
+                  to="https://wa.me/917819846375"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-10 h-10 bg-gray-600 rounded-lg transition-all duration-300 hover:scale-110"
@@ -224,7 +224,7 @@ const Footer = () => {
                   <div>
                     <p className="font-medium text-white mb-2">Call Us</p>
                     <Link
-                      to="tel:+917302799941"
+                      to="tel:+917819846375"
                       className="block text-gray-300 transition-colors duration-200"
                       onMouseEnter={(e) => {
                         e.target.style.color = "#301757";
@@ -233,7 +233,19 @@ const Footer = () => {
                         e.target.style.color = "#d1d5db";
                       }}
                     >
-                      +91 73027 99941
+                      +91 7819846375
+                    </Link>
+                    <Link
+                      to="tel:+917055130555"
+                      className="block text-gray-300 transition-colors duration-200"
+                      onMouseEnter={(e) => {
+                        e.target.style.color = "#301757";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.color = "#d1d5db";
+                      }}
+                    >
+                      +91 7055130555
                     </Link>
                   </div>
                 </div>

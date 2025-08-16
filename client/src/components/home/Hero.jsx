@@ -1,188 +1,227 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const carouselRef = useRef(null);
+  // Animation variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-  const images = [
-    "/images/hero1.jpg",
-    "/images/hero2.jpg",
-    "/images/hero2.jpg",
+  const slideInLeft = {
+    hidden: {
+      opacity: 0,
+      x: -100,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const slideInRight = {
+    hidden: {
+      opacity: 0,
+      x: 100,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const scaleIn = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const features = [
+    { text: "100% Pure", icon: "💧" },
+    { text: "Rich Minerals", icon: "⚡" },
+    { text: "Natural Source", icon: "🏔️" },
   ];
 
-  // Auto-play functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  const goToSlide = (index) => setCurrentIndex(index);
-  const goToNext = () =>
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
-  const goToPrev = () =>
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
-
-  // Touch handlers for mobile swipe
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches.clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) goToNext();
-    if (isRightSwipe) goToPrev();
-  };
-
   return (
-    <div
-      className="w-full min-h-screen relative pt-5 sm:pt-16 lg:pt-25"
-      style={{
-        backgroundImage: ` url("/images/145217.jpg")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8 sm:mb-5 pt-10">
-          <h1 className="hidden lg:block text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl uppercase font-extrabold text-gray-900 mb-4 sm:mb-4 md:mb-5 lg:mb-6 leading-tight sm:leading-snug drop-shadow-2xl">
-            Akaay Water. Pure By Nature.
-          </h1>
-        </div>
-
-        {/* Responsive Layout - Stack on mobile, flex on larger screens */}
-        <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
-          <div className="w-full lg:basis-1/2 self-center order-2 lg:order-1">
-            <h2 className="text-[#301757] text-3xl pb-5 font-bold">
-              Hydration Elevated, With Akaay
-            </h2>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-900 mb-6 sm:mb-6 md:mb-7 lg:mb-8 max-w-xl sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto sm:mx-0 lg:mx-0 leading-relaxed px-2 sm:px-0">
-              Akaay Water is crafted to deliver crisp, naturally balanced
-              hydration from pristine sources, ensuring every sip feels clean
-              and revitalizing for mind and body. <br /> <br />
-              Designed for active lifestyles and daily wellness, Akaay supports
-              better focus, recovery, and sustained energy—because pure water
-              should do more than just quench thirst.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start lg:justify-start gap-4">
-              <Link
-                to="/about"
-                className="bg-[#301757] text-white px-6 sm:px-6 md:px-8 py-2.5 sm:py-2.5 md:py-3 rounded-3xl text-xs sm:text-xs md:text-sm font-semibold border-2 border-[#301757] hover:bg-transparent hover:text-[#301757] hover:border-2 hover:border-[#301757] transition duration-300 w-full sm:w-auto text-center"
-              >
-                <i className="ri-arrow-right-up-long-line"></i> Discover Akaay
-              </Link>
-            </div>
-          </div>
-
-          {/* Enhanced Responsive Carousel */}
-          <div className="w-full lg:basis-1/2 order-1 lg:order-2">
-            <div
-              className="relative w-full overflow-hidden rounded-3xl border-2 border-[#301757]"
-              ref={carouselRef}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
+    <>
+      {/* Hero Section */}
+      <div className="w-full min-h-screen relative overflow-hidden flex items-center pt-16 sm:pt-20 lg:pt-24 bg-[#fff]">
+        {/* Main Content Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8 order-2 lg:order-1"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
-              {/* Carousel Container */}
-              <div
-                className="flex transition-transform duration-500 ease-in-out "
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              {/* Main Headline */}
+              <motion.h1
+                className="text-slate-800 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold uppercase leading-tight tracking-wide"
+                variants={slideInLeft}
               >
-                {images.map((image, index) => (
-                  <div key={index} className="w-full flex-shrink-0 ">
-                    <Link to="/contact">
-                      <img
-                        src={image}
-                        className="w-full h-auto max-h-[250px] sm:max-h-[350px] md:max-h-[450px] lg:max-h-[500px] xl:max-h-[600px] mx-auto object-contain "
-                        alt={`Akaay Water Banner ${index + 1}`}
-                      />
-                    </Link>
-                  </div>
-                ))}
-              </div>
-
-              {/* Responsive Navigation Arrows - Hidden on mobile */}
-              <button
-                onClick={goToPrev}
-                className="hidden sm:block absolute left-1 sm:left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 sm:p-2 rounded-full hover:bg-black/70 transition-all duration-200 z-10"
-              >
-                <svg
-                  className="w-4 h-4 sm:w-6 sm:h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                Refresh With <br />
+                <motion.span
+                  className="block sm:inline text-[#3c096c]"
+                  variants={fadeInUp}
+                  transition={{ delay: 0.3 }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
+                  Natural Mineral Water
+                </motion.span>
+              </motion.h1>
 
-              <button
-                onClick={goToNext}
-                className="hidden sm:block absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 sm:p-2 rounded-full hover:bg-black/70 transition-all duration-200 z-10"
+              {/* Primary Description */}
+              <motion.p
+                className="text-slate-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-full lg:max-w-2xl mx-auto lg:mx-0"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
               >
-                <svg
-                  className="w-4 h-4 sm:w-6 sm:h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                Experience the perfect blend of purity, taste, and energy. Every
+                drop is crafted to revitalize your body and elevate your
+                performance.
+              </motion.p>
 
-              {/* Responsive Dots Indicator */}
-              <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2">
-                {images.map((_, index) => (
-                  <button
+              {/* Key Features */}
+              <motion.div
+                className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {features.map((feature, index) => (
+                  <motion.div
                     key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 ${
-                      index === currentIndex
-                        ? "bg-[#301757] scale-125"
-                        : "bg-white/50 hover:bg-white/70"
-                    }`}
-                  />
+                    className="flex items-center gap-2 sm:gap-3 bg-white/30 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    variants={scaleIn}
+                    whileHover={{
+                      scale: 1.05,
+                      y: -3,
+                      boxShadow: "0 10px 25px rgba(60, 9, 108, 0.2)",
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <motion.span
+                      className="text-base sm:text-lg"
+                      whileHover={{ rotate: 20, scale: 1.2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {feature.icon}
+                    </motion.span>
+                    <span className="text-slate-800 text-xs sm:text-sm md:text-base font-semibold transition-colors group-hover:text-[#3c096c]">
+                      {feature.text}
+                    </span>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
-              {/* Mobile Swipe Indicator */}
-              <div className="block sm:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 text-xs">
-                Swipe to navigate
-              </div>
-            </div>
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 items-center lg:items-start"
+                variants={scaleIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <Link to="/product" className="w-full sm:w-auto">
+                  <motion.div
+                    className="group bg-[#3c096c] text-white py-3 sm:py-3 px-6 sm:px-8 rounded-full text-sm sm:text-base transition-all duration-300 flex items-center justify-center gap-3 shadow-xl cursor-pointer w-full sm:w-auto"
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 15px 35px rgba(60, 9, 108, 0.4)",
+                      backgroundColor: "#240046",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <span>Explore Products</span>
+                    <motion.span
+                      className="text-lg sm:text-xl"
+                      whileHover={{ x: 5 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right side - Hero Image */}
+            <motion.div
+              className="flex justify-center items-center relative order-1 lg:order-2"
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {/* Main Hero Image */}
+              <motion.div
+                className="relative z-10 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl"
+                whileHover={{
+                  scale: 1.02,
+                  rotateY: 2,
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src="/images/banner-new.jpg"
+                  alt="Natural Mineral Water"
+                  className="w-full h-auto max-h-64 sm:max-h-80 md:max-h-96 lg:max-h-[400px] xl:max-h-[800px] object-contain rounded-lg "
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
