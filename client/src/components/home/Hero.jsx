@@ -166,7 +166,7 @@ const Hero = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <Link to="/product" className="w-full sm:w-auto">
+                <Link to="/the-range" className="w-full sm:w-auto">
                   <motion.div
                     className="group bg-[#3c096c] text-white py-3 sm:py-3 px-6 sm:px-8 rounded-full text-sm sm:text-base transition-all duration-300 flex items-center justify-center gap-3 shadow-xl cursor-pointer w-full sm:w-auto"
                     whileHover={{

@@ -99,14 +99,15 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {[
-                { to: "/home", label: "Home" },
-                { to: "/product", label: "Product" },
-                { to: "/about", label: "About Us" },
-                { to: "/contact", label: "Contact Us" },
+                { name: "Overview", path: "/" },
+                { name: "The Range", path: "/the-range" },
+                { name: "Private Label", path: "/private-label" },
+                { name: "Our Story", path: "/about" },
+                { name: "Contact us", path: "/contact" },
               ].map((item) => (
-                <li key={item.to}>
+                <li key={item.path}>
                   <Link
-                    to={item.to}
+                    to={item.path}
                     className="group flex items-center text-gray-300 transition-all duration-200"
                     onMouseEnter={(e) => {
                       e.target.style.color = "#301757";
@@ -133,7 +134,7 @@ const Footer = () => {
                         marginRight: "0px",
                       }}
                     ></span>
-                    {item.label}
+                    {item.name}
                   </Link>
                 </li>
               ))}

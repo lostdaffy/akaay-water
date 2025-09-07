@@ -19,11 +19,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-14 sm:h-16 relative">
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <img
-              src="/images/akaay-logo.png"
-              className="h-10 w-auto sm:h-10 md:h-10"
-              alt="Akaay Logo"
-            />
+            <Link to="/">
+              <img
+                src="/images/akaay-logo.png"
+                className="h-10 w-auto sm:h-10 md:h-10"
+                alt="Akaay Logo"
+              />
+            </Link>
           </div>
 
           {/* Center: Menu (Desktop) */}
